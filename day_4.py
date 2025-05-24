@@ -18,5 +18,16 @@ def only_floats(a, b):
         return 0
 
 
+def floats(a, b):
+    match (isinstance(a, float), isinstance(b, float)):
+        case(True, True):
+            return 2
+        case (True, False) | (False, True):
+            return 1
+        case (False, False):
+            return 0
+
+
 if __name__ == "__main__":
     print(only_floats(12.1, 23))
+    print(floats(23, 12.2))

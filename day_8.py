@@ -8,6 +8,20 @@ For example, if you pass [1,2,4,6] as an argument the function should return 6 -
 """
 
 
+def even_odd(numbers):
+    odd_numbers = []
+    even_numbers = []
+    for num in numbers:
+        if num % 2 == 0:
+            even_numbers.append(num)
+        else:
+            odd_numbers.append(num)
+    largest_even_number = max(even_numbers)
+    smallest_odd_number = min(odd_numbers)
+    return largest_even_number - smallest_odd_number
+
+
+# Using list comprehension
 def odd_even(num):
     odd_numbers = [num for num in num if num % 2 != 0]
     even_numbers = [num for num in num if num % 2 == 0]
@@ -16,4 +30,5 @@ def odd_even(num):
 
 
 if __name__ == "__main__":
+    print(even_odd([1, 2, 4, 6]))
     print(odd_even([1, 2, 4, 6]))
