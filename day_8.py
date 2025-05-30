@@ -21,6 +21,19 @@ def even_odd(numbers):
     return largest_even_number - smallest_odd_number
 
 
+def find_odd_even(numbers):
+    odd = []
+    even = []
+    for num in numbers:
+        match (num % 2 == 0):
+            case True:
+                even.append(num)
+            case False:
+                odd.append(num)
+    difference = max(even) - min(odd)
+    return difference
+
+
 # Using list comprehension
 def odd_even(num):
     odd_numbers = [num for num in num if num % 2 != 0]
@@ -32,3 +45,4 @@ def odd_even(num):
 if __name__ == "__main__":
     print(even_odd([1, 2, 4, 6]))
     print(odd_even([1, 2, 4, 6]))
+    print(find_odd_even([5, 7, 4, 6, 8]))
