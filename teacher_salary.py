@@ -1,22 +1,4 @@
 """
-Day 14: Flatten the List
-
-Write a function called flat_list that takes one argument, a nested
-list. The function converts the nested list into a one-dimension list.
-
-For example [[2,4,5,6]] should return [2,4,5,6].
-"""
-
-
-def flat_list(nested_list):
-    flattened_list = []
-    for sublist in nested_list:
-        for item in sublist:
-            flattened_list.append(item)
-    return flattened_list
-
-
-"""
 Extra Challenge: Teacher’s Salary
 
 b. A school has asked you to write a program that will calculate teachers' salaries.
@@ -46,18 +28,15 @@ Gross salary:2,125
 
 def your_salary():
     name = input("Enter the teacher's name: ")
-    rate = float(input("Enter the rate per period: "))
+    rate = int(input("Enter the rate per period: "))
     periods = float(input("Enter the number of periods: "))
 
     if periods > 100:
         gross_salary = (100 * rate) + ((periods - 100) * (rate + 5))
     else:
         gross_salary = periods * rate
-
     return f"\nTeacher: {name}\nPeriods: {periods}\nGross salary: {gross_salary}"
 
 
 if __name__ == "__main__":
-    print(flat_list([[2, 4, 5, 6]]))
-    print(flat_list([[2, 3, 4, 5, 6], [3, 5, 7, 9]]))
     print(your_salary())
