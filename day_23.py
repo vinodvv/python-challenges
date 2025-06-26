@@ -16,22 +16,28 @@ def calculator():
         # asking the user to pick an operator
         opt = input("Pick operator (+, -, *, /): ")
         num2 = int(input("Enter another number: "))
+
         if opt not in ['+', '-', '*', '/'] or len(opt) > 1:
             print("Please enter a valid operator.")
+
+        # Handling zero division
+        if opt == '/' and num2 == 0:
+            return "You cannot divide a number by zero. Try again."
+
+        # operator lookup using dictionary
+        operations = {
+            '+': operator.add,
+            '-': operator.sub,
+            '*': operator.mul,
+            '/': operator.truediv
+        }
+
+        result = operations[opt](num1, num2)
+
     except ValueError:
-        print("Please enter a valid number.")
-    except ZeroDivisionError:
-        print("You cannot divide a number by zero. Try again.")
-    else:
-        if opt == '+':
-            return f"ans is: {operator.add(num1, num2)}"
-        elif opt == '-':
-            return f"ans is: {operator.sub(num1, num2)}"
-        elif opt == '*':
-            return f"ans is: {operator.mul(num1, num2)}"
-        elif opt == "/":
-            return f"ans is: {operator.truediv(num1, num2)}"
-    return 'Try again.'
+        return "Please enter a valid number."
+    except NameError:
+        return "An unexpected error occurred (NameError)."
 
 
 print(calculator())
