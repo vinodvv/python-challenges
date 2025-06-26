@@ -11,6 +11,8 @@ import operator
 
 
 def calculator():
+    history = []  # To store calculation history
+
     while True:
         try:
             num1 = float(input("Enter number: "))
@@ -36,7 +38,9 @@ def calculator():
             }
 
             result = operations[opt](num1, num2)
-            print(f"\nans is: {result}.")
+            cal_str = f"{num1} {opt} {num2} = {result}"
+            history.append(cal_str)
+            print(f"\nans is: {result}")
 
         except ValueError:
             print("Please enter a valid number.")
@@ -46,7 +50,13 @@ def calculator():
         # Ask user if they want to continue
         again = input("Do you want to perform another calculation? (y/n): ").lower()
         if again != 'y':
-            print("Thanks for using the calculator. Goodbye!")
+            print("\nThanks for using the calculator.")
+            if history:
+                print("\nCalculation History:")
+                for item in history:
+                    print(item)
+            else:
+                print("No calculations were made.")
             break
 
 
