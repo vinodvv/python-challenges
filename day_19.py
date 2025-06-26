@@ -42,5 +42,6 @@ def count_elements(string):
     return f"The string has {len(string)} elements."
 
 
-print(count_words("I lover learning"))
-print(count_elements("I love learning"))
+if __name__ == "__main__":
+    print(count_words("I love learning"))
+    print(count_elements("I love learning"))
