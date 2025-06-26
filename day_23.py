@@ -13,10 +13,10 @@ import operator
 def calculator():
     while True:
         try:
-            num1 = int(input("Enter number: "))
+            num1 = float(input("Enter number: "))
             # asking the user to pick an operator
             opt = input("Pick operator (+, -, *, /): ")
-            num2 = int(input("Enter another number: "))
+            num2 = float(input("Enter another number: "))
 
             if opt not in ['+', '-', '*', '/'] or len(opt) > 1:
                 print("Please enter a valid operator.")
