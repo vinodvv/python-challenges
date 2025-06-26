@@ -11,33 +11,45 @@ import operator
 
 
 def calculator():
-    try:
-        num1 = int(input("Enter number: "))
-        # asking the user to pick an operator
-        opt = input("Pick operator (+, -, *, /): ")
-        num2 = int(input("Enter another number: "))
+    while True:
+        try:
+            num1 = int(input("Enter number: "))
+            # asking the user to pick an operator
+            opt = input("Pick operator (+, -, *, /): ")
+            num2 = int(input("Enter another number: "))
 
-        if opt not in ['+', '-', '*', '/'] or len(opt) > 1:
-            print("Please enter a valid operator.")
+            if opt not in ['+', '-', '*', '/'] or len(opt) > 1:
+                print("Please enter a valid operator.")
+                continue
 
-        # Handling zero division
-        if opt == '/' and num2 == 0:
-            return "You cannot divide a number by zero. Try again."
+            # Handling zero division
+            if opt == '/' and num2 == 0:
+                print("You cannot divide a number by zero. Try again.")
+                continue
 
-        # operator lookup using dictionary
-        operations = {
-            '+': operator.add,
-            '-': operator.sub,
-            '*': operator.mul,
-            '/': operator.truediv
-        }
+            # operator lookup using dictionary
+            operations = {
+                '+': operator.add,
+                '-': operator.sub,
+                '*': operator.mul,
+                '/': operator.truediv
+            }
 
-        result = operations[opt](num1, num2)
+            result = operations[opt](num1, num2)
+            print(f"\nans is: {result}.")
 
-    except ValueError:
-        return "Please enter a valid number."
-    except NameError:
-        return "An unexpected error occurred (NameError)."
+        except ValueError:
+            print("Please enter a valid number.")
+        except NameError:
+            print("An unexpected error occurred (NameError).")
+
+        # Ask user if they want to continue
+        again = input("Do you want to perform another calculation? (y/n): ").lower()
+        if again != 'y':
+            print("Thanks for using the calculator. Goodbye!")
+            break
 
 
-print(calculator())
+if __name__ == "__main__":
+    # Start calculator
+    calculator()
