@@ -1,11 +1,3 @@
-"""
-Build a Python program that calculates the sum of all numbers in a user-defined range.
-Instead of hardcoding the start and end values, your program will prompt the user to enter them.
-You’ll then write a function that loops through each number from the start to the end (inclusive)
-and calculates the total sum.
-"""
-
-
 def sum_all_numbers(start, end):
     total = 0
     for num in range(start, end + 1):
@@ -15,20 +7,34 @@ def sum_all_numbers(start, end):
 
 def get_integer_input(prompt):
     while True:
+        user_input = input(prompt)
+        if user_input.lower() == "exit":
+            return "exit"
         try:
-            return int(input(prompt))
+            return int(user_input)
         except ValueError:
-            print("Invalid input. Please enter a valid integer.")
-
-
-# Get valid start and end values with retries
-start = get_integer_input("Enter the start of the range: ")
-end = get_integer_input("Enter the end of the range: ")
-if start > end:
-    print(f"Note: Start of the range ({start}) is greater than end of the range ({end}). Swapping values.")
-    start, end = end, start
+            print("Invalid input. Please enter a valid integer or type 'exit' to quit.")
 
 
 if __name__ == "__main__":
-    result = sum_all_numbers(start, end)
-    print(result)
+    print("Welcome to the Range Sum Calculator!")
+    print("You can type 'exit' anytime to quit.\n")
+
+    while True:
+        start = get_integer_input("Enter the start of the range: ")
+        if start == "exit":
+            print("Goodbye!")
+            break
+
+        end = get_integer_input("Enter the end of the range: ")
+        if end == "exit":
+            print("Goodbye!")
+            break
+
+        if start > end:
+            print(f"Note: Start ({start}) is greater than end ({end}). Swapping values.")
+            start, end = end, start
+
+        result = sum_all_numbers(start, end)
+        print(result)
+        print("-" * 40)
