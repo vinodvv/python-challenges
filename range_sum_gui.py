@@ -7,7 +7,7 @@ def sum_all_numbers(start, end):
     return f"The sum of all numbers from {start} to {end} is: {total}"
 
 
-def calculate_sum():
+def calculate_sum(event=None):  # Allow event arg for key binding
     try:
         start = int(start_entry.get())
         end = int(end_entry.get())
@@ -15,11 +15,18 @@ def calculate_sum():
         if start > end:
             messagebox.showinfo("Note", f"Start of Range ({start}) is greater than End of Range ({end})."
                                         f"Swapping values.")
-            # print(f"Note: Start ({start}) is greater than end ({end}). Swapping values.")
             start, end = end, start  # Swap to ensure valid range
 
         result = sum_all_numbers(start, end)
         result_label.config(text=result)
+
+        # Clear input fields after calculation
+        start_entry.delete(0, tk.END)
+        end_entry.delete(0, tk.END)
+
+        # Set focus back to start entry
+        start_entry.focus()
+
     except ValueError:
         messagebox.showerror("Invalid Input", "Please enter valid integer for Start of Range and "
                                               "End of Range.")
@@ -39,10 +46,14 @@ root.resizable(False, False)
 tk.Label(root, text="Enter Start of Range:").pack(pady=(20, 5))
 start_entry = tk.Entry(root)
 start_entry.pack()
+start_entry.focus()  # Initial focus
 
 tk.Label(root, text="Enter End of Range:").pack(pady=(10, 5))
 end_entry = tk.Entry(root)
 end_entry.pack()
+
+# Bind Enter key to calculation
+root.bind('<Return>', calculate_sum)
 
 # Calculate button
 tk.Button(root, text="Calculate", command=calculate_sum).pack(pady=15)
@@ -50,6 +61,9 @@ tk.Button(root, text="Calculate", command=calculate_sum).pack(pady=15)
 # Result display
 result_label = tk.Label(root, text="", fg="blue", font=("Helvetica", 12, "bold"))
 result_label.pack()
+
+# # Bind Esc key to Exit
+# root.bind('<esc>', exit_app)
 
 # Exit button
 tk.Button(root, text="Exit", command=exit_app).pack(pady=10)
