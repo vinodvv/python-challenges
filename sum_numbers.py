@@ -13,16 +13,22 @@ def sum_all_numbers(start, end):
     return f"The sum of all numbers from {start} to {end} is: {total}"
 
 
+def get_integer_input(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+
+# Get valid start and end values with retries
+start = get_integer_input("Enter the start of the range: ")
+end = get_integer_input("Enter the end of the range: ")
+if start > end:
+    print(f"Note: Start of the range ({start}) is greater than end of the range ({end}). Swapping values.")
+    start, end = end, start
+
+
 if __name__ == "__main__":
-    try:
-        start = int(input("Enter the start of the range: "))
-        end = int(input("Enter the end of the range: "))
-        if start > end:
-            print(f"Note: Start of the range ({start}) is greater than end of the range ({end}). Swapping values.")
-            start, end = end, start  # Swap to ensure a valid range
-            result = sum_all_numbers(start, end)
-            print(result)
-    except ValueError:
-        print("Invalid input. Please enter valid numbers.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    result = sum_all_numbers(start, end)
+    print(result)
