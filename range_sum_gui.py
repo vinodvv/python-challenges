@@ -32,7 +32,7 @@ def calculate_sum(event=None):  # Allow event arg for key binding
                                               "End of Range.")
 
 
-def exit_app():
+def exit_app(event=None):  # Allow event arg for key binding
     root.destroy()
 
 
@@ -52,9 +52,6 @@ tk.Label(root, text="Enter End of Range:").pack(pady=(10, 5))
 end_entry = tk.Entry(root)
 end_entry.pack()
 
-# Bind Enter key to calculation
-root.bind('<Return>', calculate_sum)
-
 # Calculate button
 tk.Button(root, text="Calculate", command=calculate_sum).pack(pady=15)
 
@@ -62,11 +59,12 @@ tk.Button(root, text="Calculate", command=calculate_sum).pack(pady=15)
 result_label = tk.Label(root, text="", fg="blue", font=("Helvetica", 12, "bold"))
 result_label.pack()
 
-# # Bind Esc key to Exit
-# root.bind('<esc>', exit_app)
-
 # Exit button
 tk.Button(root, text="Exit", command=exit_app).pack(pady=10)
+
+# Keyboard bindings
+root.bind('<Return>', calculate_sum)
+root.bind('<Escape>', exit_app)
 
 # Start the GUI event loop
 root.mainloop()
