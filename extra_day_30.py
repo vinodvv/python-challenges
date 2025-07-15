@@ -13,19 +13,47 @@ code output should look:
 Write a function called sorted_names.
 """
 
-names = ['Beyonce Knowles', 'Alicia Keys', 'Katie Perry', 'Chris Brown', 'Tom Cruise']
-sorted_names = sorted(names, key=lambda x: x.split()[-1])
+# names = ['Beyonce Knowles', 'Alicia Keys', 'Katie Perry', 'Chris Brown', 'Tom Cruise']
+# sorted_names = sorted(names, key=lambda x: x.split()[-1])
+#
+# list1 = []
+#
+# for name in sorted_names:
+#     name_parts = name.split()
+#     if len(name_parts) == 2:
+#         # print(f"{name_parts[1]} {name_parts[0]}")
+#         list1.append(f"{name_parts[1]} {name_parts[0]}")
+#     else:
+#         list1.append(name)
+#
+# print(names)
+# print(list1)
+#
+#
+# # Swap first and last name
+# swapped_names = [f"{last} {first}" for first, last in (name.split() for name in sorted_names)]
+#
+# print(swapped_names)
 
-list1 = []
 
-for name in sorted_names:
-    name_parts = name.split()
-    if len(name_parts) == 2:
-        # print(f"{name_parts[1]} {name_parts[0]}")
-        list1.append(f"{name_parts[1]} {name_parts[0]}")
-    else:
-        list1.append(name)
+def sort_and_swap_names(names):
+    # Sort by last name
+    sorted_names = sorted(names, key=lambda x: x.split()[-1])
 
-print(names)
-print(list1)
+    # Swap the first and last names
+    swapped_names = []
+    for name in sorted_names:
+        name_parts = name.split()
+        if len(name_parts) == 2:
+            swapped_names.append(f"{name_parts[1]} {name_parts[0]}")
+        else:
+            swapped_names.append(name)  # fallback for unexpected formats
 
+    return swapped_names
+
+
+if __name__ == "__main__":
+    names = ['Beyonce Knowles', 'Alicia Keys', 'Katie Perry', 'Chris Brown', 'Tom Cruise']
+    result = sort_and_swap_names(names)
+    print(f"Original list of names: {names}")
+    print(f"\nSorted list of names: {result}")
