@@ -52,8 +52,15 @@ def sort_and_swap_names(names):
     return swapped_names
 
 
+def sort_and_swap(a):
+    return [f"{last} {first}" for first, last in (name.split() for name in sorted(a, key=lambda x: x.split()[-1]))]
+
+
 if __name__ == "__main__":
     names = ['Beyonce Knowles', 'Alicia Keys', 'Katie Perry', 'Chris Brown', 'Tom Cruise']
     result = sort_and_swap_names(names)
     print(f"Original list of names: {names}")
-    print(f"\nSorted list of names: {result}")
+    print(f"Sorted list of names: {result}")
+
+    swapped_names = sort_and_swap(names)
+    print(f"List comprehension: {swapped_names}")
