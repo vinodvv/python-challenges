@@ -19,27 +19,41 @@ if not os.path.exists(FILE_PATH):
         writer = csv.writer(file)
         writer.writerow(HEADERS)
 
-# Prompt user for new contact
-name = input("Enter name: ").strip()
-phone = input("Enter phone: ").strip()
-email = input("Enter email: ").strip()
+# Main loop
+while True:
+    print("\nContact Book Menu")
+    print("1. Add new contact")
+    print("2. View all contacts")
+    print("3. Exit")
 
-# Save contact
-with open(FILE_PATH, mode="a", newline="") as file:
-    writer = csv.writer(file)
-    writer.writerow([name, phone, email])
+    choice = input("Enter your choice (1/2/3): ").strip()
 
-print("Contact saved.")
+    if choice == "1":
+        # Prompt user for new contact
+        name = input("Enter name: ").strip()
+        phone = input("Enter phone: ").strip()
+        email = input("Enter email: ").strip()
 
-# Ask if user wants to view all contacts
-view = input("View all contacts? (yes/no): ").strip().lower()
+        # Save contact
+        with open(FILE_PATH, mode="a", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow([name, phone, email])
 
-if view in ['yes', 'y']:
-    print("\nSaved Contacts:\n")
-    with open(FILE_PATH, mode='r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            print(f"Name: {row['Name']}")
-            print(f"Phone: {row['Phone']}")
-            print(f"Email: {row['Email Address']}")
-            print("-" * 20)
+        print("Contact saved.")
+
+    elif choice == "2":
+        print("\nSaved Contacts:\n")
+        with open(FILE_PATH, mode='r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                print(f"Name: {row['Name']}")
+                print(f"Phone: {row['Phone']}")
+                print(f"Email: {row['Email Address']}")
+                print("-" * 20)
+
+    elif choice == "3":
+        print("Goodbye!")
+        break
+
+    else:
+        print("Invalid choice. Please enter 1, 2 or 3.")
